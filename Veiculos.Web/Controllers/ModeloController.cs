@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,11 +8,12 @@ using Veiculos.Web.Models;
 
 namespace Veiculos.Web.Controllers
 {
-    public class HomeController : Controller
+    public class ModeloController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Login");
+            return View();
         }
     }
 }

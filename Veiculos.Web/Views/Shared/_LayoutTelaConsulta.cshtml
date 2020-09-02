@@ -1,0 +1,18 @@
+
+@model Veiculos.Web.Models.ConsultaViewModel
+@{
+    ViewData["Title"] = Model.Titulo;
+    Layout ="/Views/Shared/_LayoutUsuarioLogado.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="titulo-pagina">@Model.Titulo</h2>
+        <a class="btn btn-xs btn-primary" href="@Model.RotaCadastro">Novo Cadastro</a>
+    </div>
+    <div class="col-md-12">
+        @RenderBody()
+    </div>
+</div>
+
+

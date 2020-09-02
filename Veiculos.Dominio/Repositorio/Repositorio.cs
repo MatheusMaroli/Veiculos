@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Veiculos.Dominio.Entidades;
+using Veiculos.Dominio.AcessoDados;
 using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;

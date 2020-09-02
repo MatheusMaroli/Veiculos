@@ -246,3 +246,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+
+##VS CODE###
+.vscode/

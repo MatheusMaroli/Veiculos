@@ -1,0 +1,27 @@
+
+@model Veiculos.Web.Models.ConsultaViewModel;
+@{
+    Layout = "/Views/Shared/_LayoutTelaConsulta.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#Id</th>
+            <th>Nome</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var prop in (IEnumerable<Veiculos.Web.Models.MarcaViewModel>) Model.Dados)
+        {
+            <tr>
+                <td>@prop.Id</td>
+                <td>@prop.Nome</td>
+                <td><a class="btn btn-primary btn-xs">Editar</a></td>
+                <td><a class="btn btn-danger btn-xs">Excluir</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

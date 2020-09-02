@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Veiculos.Dominio.Repositorio
+namespace Veiculos.Dominio.AcessoDados
 {
     public class Db : DbContext
     {
