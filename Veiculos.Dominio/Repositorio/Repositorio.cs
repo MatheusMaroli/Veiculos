@@ -10,7 +10,11 @@ namespace Veiculos.Dominio.Repositorio
 {
     public class Repositorio<T> where T : BaseEntidade
     {
-        private Db _db = new Db();
+        private Db _db;
+
+        public Repositorio(Db db){
+            _db = db;
+        }
 
         public IEnumerable<T> Get
         {

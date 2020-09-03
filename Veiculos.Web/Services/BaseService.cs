@@ -1,14 +1,17 @@
 
 using Utils.Web.Responses;
+using Veiculos.Dominio.AcessoDados;
 
 namespace Veiculos.Web.Services
 {
     public abstract class BaseService<T> where T: class
     {
 
-        protected object _db;
-        public BaseService(object db) {
+        protected Db _db;
+        protected ResponseModelValidator _response;
+        public BaseService(Db db) {
             _db = db;
+            _response = new ResponseModelValidator();
         }
 
         protected abstract void ValidarCadastro(T model);

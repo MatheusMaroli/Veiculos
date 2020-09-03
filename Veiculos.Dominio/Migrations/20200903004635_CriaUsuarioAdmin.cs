@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Utils.Crypt;
 
+
 namespace Veiculos.Dominio.Migrations
 {
     public partial class CriaUsuarioAdmin : Migration

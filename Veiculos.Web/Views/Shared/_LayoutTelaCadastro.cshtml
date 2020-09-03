@@ -1,0 +1,19 @@
+
+@model Veiculos.Web.Models.CadastroViewModel
+@{
+    ViewData["Title"] = Model.Titulo;
+    Layout ="/Views/Shared/_LayoutUsuarioLogado.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="titulo-pagina">@Model.Titulo</h2>        
+    </div>
+    <div class="col-md-12">
+        <form action="@Model.RotaForm" method="post">
+             @RenderBody()   
+        </form>
+    </div>
+</div>
+
+

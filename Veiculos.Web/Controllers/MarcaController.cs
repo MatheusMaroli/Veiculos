@@ -5,35 +5,68 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Veiculos.Web.Models;
+using Veiculos.Dominio.AcessoDados;
+using Veiculos.Dominio.Entidades;
+using Veiculos.Dominio.Repositorio;
+using Veiculos.Web.Services;
 
 namespace Veiculos.Web.Controllers
 {
     public class MarcaController : Controller
     {   
-
-      
-        private IEnumerable<Models.MarcaViewModel> PopulaMarcas(){
-            var marcas = new List<Models.MarcaViewModel>();
-            marcas.Add(new Models.MarcaViewModel() {Id=1, Nome="Honda"});
-            marcas.Add(new Models.MarcaViewModel() {Id=1, Nome="Toyota"});
-            marcas.Add(new Models.MarcaViewModel() {Id=1, Nome="Pegout"});
-            return marcas;
-        }
-
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index([FromServices] Db db)
         {
+            var repositorio = new Repositorio<Marca>(db);
             var _consultaModel = new Models.ConsultaViewModel();
             _consultaModel.Titulo ="Cadastro de Marcas";
             _consultaModel.RotaCadastro ="/Marca/Cadastro";
-           _consultaModel.Dados = PopulaMarcas();
+           _consultaModel.Dados = repositorio.Get;
             return View(_consultaModel);
         }
 
         [HttpGet]
         public IActionResult Cadastro()
+        {   
+            var model = new Models.CadastroViewModel();
+            model.RotaForm="/Marca/Cadastro";
+            model.Titulo="Cadastro de Marcas";
+            model.Dados = new Marca();
+
+            return View("Form", model);
+        }
+
+        [HttpPost]
+        public IActionResult Cadastro([FromServices] Db db, Marca param)
         {
-            return View();
+            var marcaService= new MarcaService(db);
+            var response = marcaService.Cadastrar(param);
+            if (response.IsValidResponse())
+                return Ok(response);
+            return BadRequest(response);
+        }
+
+        [HttpGet]
+        public IActionResult Editar([FromServices] Db db, int id)
+        {    
+            var repositorio = new Repositorio<Marca>(db);
+            var model = new Models.CadastroViewModel();
+            model.RotaForm="/Marca/Editar";
+            model.Titulo="Editar Marca";
+            model.Dados = repositorio.Get.FirstOrDefault(f => f.Id == id);
+
+            return View("Form", model);
+        }
+
+
+        [HttpPost]
+        public IActionResult Editar([FromServices] Db db, Marca param)
+        {
+            var marcaService= new MarcaService(db);
+            var response = marcaService.Editar(param);
+            if (response.IsValidResponse())
+                return Ok(response);
+            return BadRequest(response);
         }
     }
 }

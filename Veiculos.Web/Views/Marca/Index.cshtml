@@ -14,13 +14,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var prop in (IEnumerable<Veiculos.Web.Models.MarcaViewModel>) Model.Dados)
+        @foreach(var prop in (IEnumerable<Veiculos.Dominio.Entidades.Marca>) Model.Dados)
         {
             <tr>
                 <td>@prop.Id</td>
                 <td>@prop.Nome</td>
-                <td><a class="btn btn-primary btn-xs">Editar</a></td>
-                <td><a class="btn btn-danger btn-xs">Excluir</a></td>
+                <td><a href="/Marca/Editar?id=@prop.Id" class="btn btn-primary btn-xs">Editar</a></td>
+                <td><a href="/Marca/Excluir?id=@prop.Id" class="btn btn-danger btn-xs">Excluir</a></td>
             </tr>
         }
     </tbody>

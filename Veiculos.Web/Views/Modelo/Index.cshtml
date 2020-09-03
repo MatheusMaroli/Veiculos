@@ -1,34 +1,29 @@
+
+@model Veiculos.Web.Models.ConsultaViewModel;
 @{
-    Layout = "/Views/Shared/_LayoutUsuarioLogado.cshtml";
+    Layout = "/Views/Shared/_LayoutTelaConsulta.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h2>Cadastro de Modelos</h2>
-        <a class="btn btn-xs btn-primary">Novo Cadastro</a>
-    </div>
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#Id</th>
-                    <th>Modelo</th>
-                    <th>Marca</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Civic LXR 2.0</td>
-                    <td>Honda</td>
-                    <td><a class="btn btn-primary btn-xs">Editar</a></td>
-                    <td><a class="btn btn-danger btn-xs">Excluir</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
+<table class="table">
+    <thead>
+        <tr>
+            <th>#Id</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var prop in (IEnumerable<Veiculos.Dominio.Entidades.Modelo>) Model.Dados)
+        {
+            <tr>
+                <td>@prop.Id</td>
+                <td>@prop.Nome</td>
+                <td>@prop.Marca.Nome</td>
+                <td><a href="/Modelo/Editar?id=@prop.Id" class="btn btn-primary btn-xs">Editar</a></td>
+                <td><a href="/Modelo/Excluir?id=@prop.Id" class="btn btn-danger btn-xs">Excluir</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

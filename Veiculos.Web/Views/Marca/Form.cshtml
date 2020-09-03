@@ -1,0 +1,23 @@
+@model Veiculos.Web.Models.CadastroViewModel
+@{
+    Layout="/Views/Shared/_LayoutTelaCadastro.cshtml";
+    
+}
+
+
+@{
+    var _dados = (Veiculos.Dominio.Entidades.Marca)Model.Dados;
+
+    <input class="hidden" name="Id" value="@_dados.Id"/>
+
+    <div class="form-group">
+        <label>Nome</label>
+        <input class="form-control" name="Nome" value="@_dados.Nome"/>
+        <label id="erroNome" class="hidden text-red">Informe o nome</label>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-xs btn-primary">Salvar</button>
+    </div>
+}
+
