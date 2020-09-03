@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -10,6 +11,6 @@ namespace Veiculos.Dominio.Entidades
     {
         [Required]
         public string Nome {get;set;}
-        public virtual ICollection<Marca> Marcas {get;set;}
+        public virtual ICollection<Modelo> Marcas {get;set;}
     }
 }

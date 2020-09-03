@@ -1,14 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Utils.ClassExentions;
+using Utils.ClassExtensions;
 
 namespace Veiculos.Dominio.Entidades
 {
     [Table("anuncios")]
-    public class Anuncios
+    public class Anuncio : BaseEntidade
     {
         [Required]
         public int IdModelo {get;set;}

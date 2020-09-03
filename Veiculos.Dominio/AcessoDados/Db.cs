@@ -1,9 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Veiculos.Dominio.Entidades;
 
 namespace Veiculos.Dominio.AcessoDados
 {
     public class Db : DbContext
     {
+
+        public DbSet<Marca> Marcas {get;set;}
+        public DbSet<Modelo> Modelos {get;set;}
+        public DbSet<Anuncio> Anuncios {get;set;}
+        public DbSet<Usuario> Usuarios {get;set;}
+
         public Db(DbContextOptions<Db> options) : base(options)
         {
         }
@@ -15,16 +22,19 @@ namespace Veiculos.Dominio.AcessoDados
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           /* modelBuilder.Entity<Exemple>().ToTable("exemples");
-            */
+            modelBuilder.Entity<Marca>().ToTable("marcas");
+            modelBuilder.Entity<Modelo>().ToTable("modelos");
+            modelBuilder.Entity<Anuncio>().ToTable("anuncios");
+            modelBuilder.Entity<Usuario>().ToTable("usuarios");
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseLazyLoadingProxies();
-               // optionsBuilder.UseMySql("Server=xx;User Id=xx;Password=xx;Database=xx;convert zero datetime=True");
+            //    optionsBuilder.ena();
+                optionsBuilder.UseMySql(ConfiguracaoDB.StringConexao);
 
             }
         }
