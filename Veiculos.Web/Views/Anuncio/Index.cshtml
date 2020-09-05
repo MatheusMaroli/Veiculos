@@ -1,5 +1,6 @@
+@model Veiculos.Web.Models.ConsultaViewModel
 @{
-    Layout = "/Views/Shared/_LayoutUsuarioLogado.cshtml";
+    Layout = "/Views/Shared/_LayoutTelaConsulta.cshtml";
 }
 
 <table class="table">
@@ -19,18 +20,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>Civic LXR 2.0</td>
-            <td>Honda</td>
-            <td>2020</td>
-            <td>32.000</td>
-            <td>35.000</td>
-            <td>Branco</td>
-            <td>Gosolina</td>
-            <td>05/08/2020</td>
-            <td><a class="btn btn-primary btn-xs">Editar</a></td>
-            <td><a class="btn btn-danger btn-xs">Excluir</a></td>
-        </tr>
+        @foreach(var prop in (IEnumerable<Veiculos.Dominio.Entidades.Anuncio>)Model.Dados )
+        {
+            <tr>
+                <td>@prop.Id</td>
+                <td>@prop.Modelo.Nome</td>
+                <td>@prop.Marca.Nome</td>
+                <td>@prop.Ano</td>
+                <td>@prop.ValorCompra</td>
+                <td>@prop.ValorVenda</td>
+                <td>@prop.Cor</td>
+                <td>@prop.TipoCombustivel</td>
+                <td>@prop.DataVenda.ToString()</td>
+                <td><a href="/Anuncio/Editar?id=@prop.Id" class="btn btn-primary btn-xs">Editar</a></td>
+                <td><a href="/Anuncio/Excluir?id=@prop.Id" class="btn btn-danger btn-xs">Excluir</a></td>
+            </tr>
+        }
     </tbody>
 </table>

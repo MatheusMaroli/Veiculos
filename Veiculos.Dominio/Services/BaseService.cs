@@ -2,7 +2,7 @@
 using Utils.Web.Responses;
 using Veiculos.Dominio.AcessoDados;
 
-namespace Veiculos.Web.Services
+namespace Veiculos.Dominio.Services
 {
     public abstract class BaseService<T> where T: class
     {

@@ -1,0 +1,40 @@
+
+@model Veiculos.Web.Models.RelatorioViewModel
+@{
+    ViewData["Title"] = Model.Titulo;
+    Layout ="/Views/Shared/_Layout.cshtml";
+}
+
+
+@await Html.PartialAsync("_NavBarRelatorio", @Model.RotaDeRetorno)
+
+<div class="container body-content">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <img src="/images/icone.png" class="img-70"/>   
+                        </div>
+                        <div class="col-md-10 text-center">
+
+                            <h2 class="titulo-pagina">@Model.Titulo</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+            
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @RenderBody()
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>

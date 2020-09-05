@@ -62,3 +62,17 @@ body {
  .img-25 {
      width: 25px;
  }
+
+ .img-70 {
+    width: 50px;
+ }
+
+ @media print {
+     .navbar {
+         display: none;
+     }
+     
+     .container {
+        width: 100%;
+    }
+ }

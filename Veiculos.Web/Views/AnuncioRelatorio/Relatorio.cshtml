@@ -1,0 +1,34 @@
+@model Veiculos.Web.Models.RelatorioViewModel
+@{
+       Layout ="/Views/Shared/_LayoutRelatorio.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Ano</th>
+            <th>Data Venda</th>
+            <th class="text-right">V. de Compra</th>
+            <th class="text-right">V. de Venda</th>            
+            <th class="text-right">Lucro</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var prop in (IEnumerable<Veiculos.Web.Models.AnuncioRelatorioViewModel>)Model.Dados )
+        {
+            <tr>
+               
+                <td>@prop.Modelo</td>
+                <td>@prop.Marca</td>
+                <td>@prop.Ano</td>
+                <td>@prop.DataVenda.ToString()</td>
+                <td class="text-right">@prop.ValorCompra</td>
+                <td class="text-right">@prop.ValorVenda</td>
+
+                <td class="text-right">@prop.Lucro</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -4,22 +4,22 @@ using Veiculos.Dominio.Entidades;
 using Veiculos.Dominio.Repositorio;
 using Veiculos.Dominio.AcessoDados;
 
-namespace Veiculos.Web.Services
+namespace Veiculos.Dominio.Services
 {
-    public class ModeloService : BaseService<Modelo> 
+    public class MarcaService : BaseService<Marca> 
     {
-        public ModeloService(Db db) : base(db)
+        public MarcaService(Db db) : base(db)
         {
         }
 
-        public override ResponseModelValidator Cadastrar(Modelo model)
+        public override ResponseModelValidator Cadastrar(Marca model)
         {
             ValidarCadastro(model);
             if (_response.IsValidResponse())
             {
                 try
                 {
-                    var repositorio = new Repositorio<Modelo>(_db);
+                    var repositorio = new Repositorio<Marca>(_db);
                     repositorio.Adicionar(model);
                 }
                 catch(Exception e)
@@ -31,14 +31,14 @@ namespace Veiculos.Web.Services
             return _response;
         }
 
-        public override ResponseModelValidator Editar(Modelo model)
+        public override ResponseModelValidator Editar(Marca model)
         {
             ValidarEditar(model);
             if (_response.IsValidResponse())
             {
                 try
                 {
-                    var repositorio = new Repositorio<Modelo>(_db);
+                    var repositorio = new Repositorio<Marca>(_db);
                     repositorio.Editar(model);
                 }
                 catch(Exception e)
@@ -55,22 +55,19 @@ namespace Veiculos.Web.Services
             throw new System.NotImplementedException();
         }
 
-        protected override void ValidarCadastro(Modelo model)
+        protected override void ValidarCadastro(Marca model)
         {
             if (string.IsNullOrEmpty(model.Nome))
                 _response.SetError("Nome", "Informe o nome");
         }
 
-        protected override void ValidarEditar(Modelo model)
+        protected override void ValidarEditar(Marca model)
         {
             if (string.IsNullOrEmpty(model.Nome))
                 _response.SetError("Nome", "Informe o nome");
-
-            if (model.IdMarca <= 0)    
-                _response.SetError("IdMarca", "Informe a marca");
         }
 
-        protected override void ValidarExcluir(Modelo model)
+        protected override void ValidarExcluir(Marca model)
         {
             throw new System.NotImplementedException();
         }

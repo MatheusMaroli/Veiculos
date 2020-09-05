@@ -33,9 +33,8 @@ namespace Veiculos.Dominio.AcessoDados
         {
             if (!optionsBuilder.IsConfigured)
             {
-            //    optionsBuilder.ena();
+                optionsBuilder.UseLazyLoadingProxies();
                 optionsBuilder.UseMySql(ConfiguracaoDB.StringConexao);
-
             }
         }
     }

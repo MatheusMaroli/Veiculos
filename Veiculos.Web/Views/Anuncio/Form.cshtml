@@ -1,0 +1,71 @@
+@model Veiculos.Web.Models.CadastroViewModel
+@{
+    Layout="/Views/Shared/_LayoutTelaCadastro.cshtml";
+    
+}
+
+@{
+    var _dados = (Veiculos.Dominio.Entidades.Anuncio)Model.Dados;
+
+    <input class="hidden" name="Id" value="@_dados.Id"/>
+
+    <div class="form-group">
+        <label>Marca</label>
+        <select id="select_marca" class="form-control" name="IdMarca" value="@_dados.IdMarca" >
+
+        </select>
+        <label id="erroIdMarca" class="hidden text-red">Informe a marca</label>
+    </div>
+
+    <div class="form-group">
+
+        <label>Modelo</label>
+        <select id="select_modelo" class="form-control" name="IdModelo" value="@_dados.IdModelo" >
+
+        </select>
+        <label id="erroIdModelo" class="hidden text-red">Informe o modelo</label>
+    </div>
+    <div class="form-group">
+
+        <label>Ano</label>
+        <input class="form-control" value="@_dados.Ano" name="Ano"/>
+        <label id="erroAno" class="hidden text-red">Informe o ano</label>
+    </div>
+
+  
+    <div class="form-group">
+        <label>Valor de compra</label>
+        <input class="form-control" value="@_dados.ValorCompra" name="ValorCompra"/>
+        <label id="erroValorCompra" class="hidden text-red">Informe o valor da compra</label>
+    </div>
+
+    <div class="form-group">
+        <label>Valor de Venda</label>
+        <input class="form-control" value="@_dados.ValorVenda" name="ValorVenda"/>
+        <label id="erroValorVenda" class="hidden text-red">Informe o valor da venda</label>
+    </div>
+
+    <div class="form-group">
+        <label>Cor</label>
+        <input class="form-control" value="@_dados.Cor" name="Cor"/>
+        <label id="erroValorVenda" class="hidden text-red">Informe cor</label>
+    </div>
+
+    <div class="form-group">
+        <label>Tipo Combustível</label>
+        <select id="select_tipo_combustivel" class="form-control" name="TipoCombustivel" value="@_dados.TipoCombustivel">
+
+        </select>
+        <label id="erroValorVenda" class="hidden text-red">Informe o tipo de combustível</label>
+    </div>
+
+    <div class="form-group">
+        <label>Data de venda</label>
+        <input class="form-control" type="date" value="@_dados.DataVenda" name="DataVenda"/>                                        
+    </div>
+
+
+    <div class="form-group">
+        <button class="btn btn-xs btn-primary">Salvar</button>
+    </div>
+}

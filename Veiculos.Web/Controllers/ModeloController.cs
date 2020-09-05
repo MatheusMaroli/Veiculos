@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Veiculos.Dominio.AcessoDados;
 using Veiculos.Dominio.Entidades;
 using Veiculos.Dominio.Repositorio;
-using Veiculos.Web.Models;
+using Veiculos.Dominio.Services;
 
 namespace Veiculos.Web.Controllers
 {
@@ -25,6 +22,23 @@ namespace Veiculos.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult Buscar([FromServices] Db db)
+        {
+            var repositorio = new Repositorio<Modelo>(db);       
+            var modelos = repositorio.Get.Select(modelo => new {modelo.Id, modelo.Nome}).ToList();
+            return Json(modelos);
+        }
+
+        [HttpGet]
+        public IActionResult BuscarPorMarca([FromServices] Db db, int idMarca)
+        {
+            var repositorio = new Repositorio<Modelo>(db);       
+            var modelos = repositorio.Get.Where(filter => filter.IdMarca == idMarca).Select(modelo => new {modelo.Id, modelo.Nome}).ToList();
+            return Json(modelos);
+        }
+
+
+        [HttpGet]
         public IActionResult Cadastro()
         {   
             var model = new Models.CadastroViewModel();
@@ -35,9 +49,13 @@ namespace Veiculos.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastro([FromServices] Db db, Marca param)
+        public IActionResult Cadastro([FromServices] Db db, Modelo param)
         {
-            return null;
+            var service= new ModeloService(db);
+            var response = service.Cadastrar(param);
+            if (response.IsValidResponse())
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet]
@@ -53,9 +71,13 @@ namespace Veiculos.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Editar([FromServices] Db db, Marca param)
+        public IActionResult Editar([FromServices] Db db, Modelo param)
         {
-            return null;
+            var service = new ModeloService(db);
+            var response = service.Editar(param);
+            if (response.IsValidResponse())
+                return Ok(response);
+            return BadRequest(response);
         }
     }
 }

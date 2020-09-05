@@ -1,0 +1,28 @@
+
+@model Veiculos.Web.Models.RelatorioConsultaViewModel
+@{
+    ViewData["Title"] = Model.Titulo;
+    Layout ="/Views/Shared/_LayoutUsuarioLogado.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="titulo-pagina">@Model.Titulo</h2>
+        @if(! string.IsNullOrEmpty(Model.SubTitulo))
+        {
+           <p>@Model.SubTitulo</p>
+        }
+        
+    </div>
+    <div class="col-md-12">
+        <form action="@Model.RotaRelatorio" method="get">
+            @RenderBody()
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-xs">Gerar Relatório</button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+

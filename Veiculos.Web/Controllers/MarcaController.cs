@@ -8,7 +8,7 @@ using Veiculos.Web.Models;
 using Veiculos.Dominio.AcessoDados;
 using Veiculos.Dominio.Entidades;
 using Veiculos.Dominio.Repositorio;
-using Veiculos.Web.Services;
+using Veiculos.Dominio.Services;
 
 namespace Veiculos.Web.Controllers
 {
@@ -24,6 +24,17 @@ namespace Veiculos.Web.Controllers
            _consultaModel.Dados = repositorio.Get;
             return View(_consultaModel);
         }
+
+        [HttpGet]
+        public IActionResult Buscar([FromServices] Db db)
+        {
+            var repositorio = new Repositorio<Marca>(db);       
+            var marcas = repositorio.Get.Select(marca => new {marca.Id, marca.Nome}).ToList()    ;
+            return Json(marcas);
+        }
+
+ 
+
 
         [HttpGet]
         public IActionResult Cadastro()

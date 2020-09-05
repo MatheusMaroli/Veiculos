@@ -15,7 +15,7 @@ namespace Veiculos.Dominio.Entidades
         [Required]
         public int IdMarca {get;set;}
         [ForeignKey("IdMarca")]
-        public virtual Marca Macar {get;set;}
+        public virtual Marca Marca {get;set;}
         [Required]
         public int Ano {get;set;}
         [Required]
@@ -27,7 +27,7 @@ namespace Veiculos.Dominio.Entidades
         public string TipoCombustivelStr 
         {
             get { return TipoCombustivel.ToString(); }
-            set { TipoCombustivel = TipoCombustivelStr.ParseToEnum<TipoCombustivel>();  }
+            set { TipoCombustivel = value.ParseToEnum<TipoCombustivel>();  }
         }
         [NotMapped]
         public TipoCombustivel TipoCombustivel { get;set;}

@@ -11,6 +11,6 @@ namespace Veiculos.Dominio.Entidades
     {
         [Required]
         public string Nome {get;set;}
-        public virtual ICollection<Modelo> Marcas {get;set;}
+        public virtual ICollection<Modelo> Modelos {get;set;}
     }
 }

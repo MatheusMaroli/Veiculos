@@ -1,0 +1,21 @@
+@model Veiculos.Web.Models.RelatorioConsultaViewModel
+@{
+    Layout = "/Views/Shared/_LayoutTelaRelatorioFiltro.cshtml";
+}
+
+
+@{
+    var _dados = (Veiculos.Web.Models.FiltroAnuncioRelatorioViewModel)Model.Filtro;
+
+   
+        <div class="form-group">
+            <label>Data Minima</label>
+            <input type="date" class="form-control" value="@_dados.DataMinima" name="DataMinima"/>
+        </div>
+
+        <div class="form-group">
+            <label>Data Maxima</label>
+            <input type="date" class="form-control" value="@_dados.DataMaxima" name="DataMaxima"/>
+        </div>
+
+}
