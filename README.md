@@ -19,8 +19,8 @@ Essas são as configuração padrão do banco de dados, podendo ser alterada no 
     dotnet clean
 
 # Executando Migrations
-    Deve realizar a navegação até a pasta do projeto "Veiculos.Web": comando => cd Veiculos.Web/
-    Executando comando de migração: comando => dotnet ef database update -p "../Veiculos.Dominio/Veiculos.Dominio.csproj"
+    cd Veiculos.Web/
+    dotnet ef database update -p "../Veiculos.Dominio/Veiculos.Dominio.csproj"
 Lembrando que para a execução do segundo comando deve ter instalado a referencia de ferramentas do Entity Framework Core na CLI do .net.
 Para realizar esse processo pode ser excutado o seguinte comando: dotnet tool install --global dotnet-ef   
 
