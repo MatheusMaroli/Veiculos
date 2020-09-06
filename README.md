@@ -25,11 +25,12 @@ Lembrando que para a execução do segundo comando deve ter instalado a referenc
 Para realizar esse processo pode ser excutado o seguinte comando: dotnet tool install --global dotnet-ef   
 
 # Executando Teste
-    Realizar a navegação até pasta do projeto de teste "Veiculos.Teste.Dominio": comando => cd Veiculos.Teste.Dominio/
-    Executar comando de teste:  comando => dotnet test
+    cd Veiculos.Teste.Dominio/
+    dotnet test
 
 # Executando Aplicação Web    
-    Realizar a navegação até pasta do projeto web "Veiculos.Web": comando => cd Veiculos.Web/
-    Executando projeto: comand => dotnet run
+    cd Veiculos.Web/
+    dotnet build
+    dotnet run
 
 
