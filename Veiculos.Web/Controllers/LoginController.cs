@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Veiculos.Dominio.AcessoDados;
+using Veiculos.Dominio.Entidades;
+using Veiculos.Dominio.Repositorio;
 using Veiculos.Web.Models;
 
 namespace Veiculos.Web.Controllers
@@ -21,9 +24,14 @@ namespace Veiculos.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel param)
+        public ActionResult Login([FromServices] Db db, LoginViewModel param)
         {
-            if ((param.Email == "matheus.maroli66@gmail.com") && (param.Senha == "123"))
+
+            var repositorio = new Repositorio<Usuario>(db);
+            var usuario = repositorio.Get.FirstOrDefault(u => u.Email.Trim() == param.Email.Trim() && u.Senha == new Utils.Crypt.Md5Crypt().Crypt(param.Senha));
+
+
+            if (usuario != null)
                 return RedirectToAction("Index", "PainelAdministrativo");
             else  {
                 ViewBag.LoginMensagemErro = "Usuário ou senha ivnado";  

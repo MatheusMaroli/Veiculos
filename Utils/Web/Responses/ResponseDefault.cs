@@ -10,6 +10,7 @@ namespace Utils.Web.Responses
         private bool _isDefaultValues;
         public IList<string> Messages {get;set;}
         public ResponseState Status   {get; private set;}
+        public string RotaRetorno {get;set;}
         public object Body {get;set;}
         public bool IsValidResponse() => Status == ResponseState.Success;
         

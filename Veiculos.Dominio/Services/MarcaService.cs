@@ -21,10 +21,11 @@ namespace Veiculos.Dominio.Services
                 {
                     var repositorio = new Repositorio<Marca>(_db);
                     repositorio.Adicionar(model);
+                    _response.Body = model.Id;
                 }
                 catch(Exception e)
                 {
-                    _response.SetError("Falha para salvar dados. Tente novamente.");
+                    _response.SetError("Falha para salvar dados. Tente novamente. Erro ===> " + e.ToString());
                 }
             }
 
@@ -43,7 +44,7 @@ namespace Veiculos.Dominio.Services
                 }
                 catch(Exception e)
                 {
-                    _response.SetError("Falha para salvar dados. Tente novamente.");
+                    _response.SetError("Falha para salvar dados. Tente novamente. Erro ===> " + e.ToString());
                 }
             }
 
@@ -63,6 +64,9 @@ namespace Veiculos.Dominio.Services
 
         protected override void ValidarEditar(Marca model)
         {
+            if (model.Id <= 0)              
+                _response.SetError("Id", "Id não Informado");
+
             if (string.IsNullOrEmpty(model.Nome))
                 _response.SetError("Nome", "Informe o nome");
         }

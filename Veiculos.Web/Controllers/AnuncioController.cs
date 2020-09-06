@@ -26,12 +26,20 @@ namespace Veiculos.Web.Controllers
             };
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Get([FromServices] Db db, int id)
+        {
+            var repositorio = new Repositorio<Anuncio>(db);
+            var anuncio = repositorio.Get.FirstOrDefault(f => f.Id == id);
+            return Json(anuncio);
+        }
       
         public IActionResult BuscarTipoCombustivel(){
                 var tipos = new List<TipoCombustivel>();
                 tipos.Add(TipoCombustivel.NaoExiste);
                 tipos.Add(TipoCombustivel.Alcool);
-                tipos.Add(TipoCombustivel.Disel);
+                tipos.Add(TipoCombustivel.Diesel);
                 tipos.Add(TipoCombustivel.Gasolina);
                 tipos.Add(TipoCombustivel.Vapor);
                 var response = tipos .Select(t => new {Id = t, Nome=t.ToString()});
@@ -56,7 +64,8 @@ namespace Veiculos.Web.Controllers
         [HttpPost]
         public IActionResult Cadastro([FromServices]Db db, Anuncio param){
             var service = new AnuncioService(db);
-            var response = service.Cadastrar(param);
+            var response = service.Cadastrar(param);    
+            response.RotaRetorno = "/Anuncio/Index";    
             if (response.IsValidResponse())
                 return Ok(response);
             return BadRequest(response);    
@@ -82,6 +91,7 @@ namespace Veiculos.Web.Controllers
         public IActionResult Editar([FromServices]Db db, Anuncio param){
             var service = new AnuncioService(db);
             var response = service.Editar(param);
+            response.RotaRetorno = "/Anuncio/Index";  
             if (response.IsValidResponse())
                 return Ok(response);
             return BadRequest(response);    

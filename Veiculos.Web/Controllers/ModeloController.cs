@@ -53,6 +53,8 @@ namespace Veiculos.Web.Controllers
         {
             var service= new ModeloService(db);
             var response = service.Cadastrar(param);
+
+            response.RotaRetorno = "/Modelo/Index";   
             if (response.IsValidResponse())
                 return Ok(response);
             return BadRequest(response);
@@ -75,6 +77,8 @@ namespace Veiculos.Web.Controllers
         {
             var service = new ModeloService(db);
             var response = service.Editar(param);
+
+            response.RotaRetorno = "/Modelo/Index";   
             if (response.IsValidResponse())
                 return Ok(response);
             return BadRequest(response);

@@ -7,7 +7,7 @@ namespace Veiculos.Dominio
     {
         [IsDefaultValue]
         NaoExiste,
-        Disel, 
+        Diesel, 
         Alcool,
         Gasolina, 
         Vapor 

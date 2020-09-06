@@ -52,6 +52,7 @@ namespace Veiculos.Web.Controllers
         {
             var marcaService= new MarcaService(db);
             var response = marcaService.Cadastrar(param);
+            response.RotaRetorno = "/Marca/Index";   
             if (response.IsValidResponse())
                 return Ok(response);
             return BadRequest(response);
@@ -75,6 +76,7 @@ namespace Veiculos.Web.Controllers
         {
             var marcaService= new MarcaService(db);
             var response = marcaService.Editar(param);
+            response.RotaRetorno = "/Marca/Index";   
             if (response.IsValidResponse())
                 return Ok(response);
             return BadRequest(response);

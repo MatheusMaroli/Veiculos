@@ -1,3 +1,4 @@
+
 using System;
 using Utils.Web.Responses;
 using Veiculos.Dominio.AcessoDados;
@@ -21,6 +22,7 @@ namespace Veiculos.Dominio.Services
                 {
                     var respositorio = new Repositorio<Anuncio>(_db);
                     respositorio.Adicionar(model);
+                    _response.Body = model.Id;
                 }
                 catch(Exception e)
                 {
@@ -79,6 +81,8 @@ namespace Veiculos.Dominio.Services
 
         protected override void ValidarEditar(Anuncio model)
         {
+            if (model.Id <=0)
+                _response.SetError("Id", "Id Não Informado");
             
             ValidarPadrao(model);
         }

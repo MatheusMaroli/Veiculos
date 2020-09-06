@@ -10,10 +10,15 @@
         <h2 class="titulo-pagina">@Model.Titulo</h2>        
     </div>
     <div class="col-md-12">
-        <form action="@Model.RotaForm" method="post">
-             @RenderBody()   
+        <form action="@Model.RotaForm" method="post" id="form-cadastro">
+             @RenderBody()  
+             <div class="form-group">
+                <button type="submit" class="btn btn-xs btn-primary">Salvar</button>
+            </div> 
         </form>
     </div>
 </div>
 
 
+<partial name="~/Views/Shared/_ModalCadastroSucesso.cshtml" />
+<partial name="~/Views/Shared/_ModalCadastroErro.cshtml" />

@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System;
 using Utils.Web.Responses;
 using Veiculos.Dominio.Entidades;
@@ -21,10 +22,11 @@ namespace Veiculos.Dominio.Services
                 {
                     var repositorio = new Repositorio<Modelo>(_db);
                     repositorio.Adicionar(model);
+                    _response.Body = model.Id;
                 }
                 catch(Exception e)
                 {
-                    _response.SetError("Falha para salvar dados. Tente novamente.");
+                    _response.SetError("Falha para salvar dados. Tente novamente. Erro ===> " + e.ToString());
                 }
             }
 
@@ -43,7 +45,7 @@ namespace Veiculos.Dominio.Services
                 }
                 catch(Exception e)
                 {
-                    _response.SetError("Falha para salvar dados. Tente novamente.");
+                    _response.SetError("Falha para salvar dados. Tente novamente."+ e.ToString());
                 }
             }
 
@@ -55,19 +57,25 @@ namespace Veiculos.Dominio.Services
             throw new System.NotImplementedException();
         }
 
-        protected override void ValidarCadastro(Modelo model)
+        private void ValidacaoPadrao(Modelo model) 
         {
+            if (model.IdMarca <= 0)    
+                _response.SetError("IdMarca", "Informe a marca");
+
             if (string.IsNullOrEmpty(model.Nome))
                 _response.SetError("Nome", "Informe o nome");
         }
 
+        protected override void ValidarCadastro(Modelo model)
+        {
+            ValidacaoPadrao(model);
+        }
+
         protected override void ValidarEditar(Modelo model)
         {
-            if (string.IsNullOrEmpty(model.Nome))
-                _response.SetError("Nome", "Informe o nome");
-
-            if (model.IdMarca <= 0)    
-                _response.SetError("IdMarca", "Informe a marca");
+            if (model.Id <=0)
+                _response.SetError("Id", "Id não informado para edição");
+            ValidacaoPadrao(model);
         }
 
         protected override void ValidarExcluir(Modelo model)

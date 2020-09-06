@@ -1,8 +1,11 @@
 ﻿
  const selectMarca = document.getElementById('select_marca');
  const selectModelo = document.getElementById('select_modelo');
-
  const selectTipoCombustivel = document.getElementById('select_tipo_combustivel');
+
+
+
+
 
 (function carregarSelectMarca (){
    
@@ -60,7 +63,71 @@
     });
 })();
 
+(function carregarFormCadastro(){
+    const formCadastro = document.getElementById('form-cadastro');
+    const RespostaStatus = {
+        success : 'Success',
+        error : 'Error', 
+        warning : 'Warning'
+    };
+
+    const modalRespostaCadastro = (r) => {  
+        const rotaRetorno = document.getElementById('rota-retorno');
+        rotaRetorno.attributes['href'].value = r.rotaRetorno;
+        $('#modal-cadastro-sucesso').modal();
+    };
+
+    const erroModal = () => {
+        $('#modal-cadastro-erro').modal();
+    }
+
+    const errorCallBack =(r) => {
+        const respostaServidor = r.responseJSON;;
+       
+        const inputs = formCadastro.getElementsByTagName('input') & formCadastro.getElementsByTagName('select') ;
+        for (let input in inputs)
+        {
+            const lbl = document.getElementById(`erro${inputs[input].name}`);
+            if (lbl)
+            {
+                lbl.innerHTML = '';
+                lbl.classList.add('hidden');
+            }
+        }
+
+        if (respostaServidor.status === RespostaStatus.warning)
+        {
+            for(let error in respostaServidor.errors)
+            {
+
+                const lbl = document.getElementById(`erro${respostaServidor.errors[error].propertyName}`);
+                if (lbl)
+                {
+                    lbl.innerHTML = respostaServidor.errors[error].message;
+                    lbl.classList.remove('hidden');
+                }
+
+            }  
+        }
+        else {
+            erroModal();
+        }
+        
+    }
 
 
-
-
+    formCadastro && formCadastro.addEventListener('submit', function(e) {
+        e.preventDefault();
+        debugger
+        ;
+        var rota = $(this).attr('action');
+        var dados = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: rota,
+            data: dados,
+            success: modalRespostaCadastro,
+            error: errorCallBack
+        });
+    });
+})();
