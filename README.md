@@ -13,7 +13,7 @@ Projeto demonstrativo afim de estdos utilizando a plataforma .net core. Esse pro
 Essas são as configuração padrão do banco de dados, podendo ser alterada no projeto de dominio na classe "ConfiguracaoDB"
 
 # Compilando Projeto (dotnet CLI)
-    Na compilação via CLI todos os comandos executado está sendo basedo pela pasta raiz do projeto.
+Na compilação via CLI todos os comandos executado está sendo basedo pela pasta raiz do projeto.
 
 # Preparando a Aplicação
     dotnet clean
